@@ -6,20 +6,22 @@ from email.message import EmailMessage
 listener = sr.Recognizer()
 
 engine = pyttsx3.init()
-engine.setProperty('rate', 180)
-engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha.premium')
+engine.setProperty('rate', 180) #reduces WPM to 180
+engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha.premium') #This voice is best suited in macos
 
 contact_list = {
     'myself': 'gojo.testing123@gmail.com',
     'guru sai': 'guru.sai.shreesh@gmail.com',
-    'akshara': 'akshara123@gmail.com',
     'blackpink': 'jennie@blackpink.com',
     'lisa': 'lisa@blackpink.com',
+    'akshara': 'akshara123@gmail.com',
 }
+
 
 def talk(text):
     engine.say(text)
     engine.runAndWait()
+
 
 def mike_out():
     try:
@@ -31,6 +33,7 @@ def mike_out():
             return info.lower()
     except:
         pass
+
 
 def send_email(receiver, subject, message):
     server = smtplib.SMTP('smtp.gmail.com', 587)#to connect to server
@@ -83,6 +86,8 @@ def create_email():
     send_more = mike_out()
     if send_more=='yes' or send_more=='yep':
         isnew_ornot()
+
+
 def isnew_ornot():
     print("Say 'YES' if it is known contact else say 'NO': ")
     talk('Are you sending this email to a know contact?')
@@ -95,6 +100,7 @@ def isnew_ornot():
         email = input("Type Email address of new contact to add: ")
         contact_list[name] = email
         create_email()
+
 
 talk('hello! I am samantha your email bot')
 talk("you can exit at any point by saying 'quit'")
