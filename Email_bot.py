@@ -12,9 +12,9 @@ engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha.premium')
 contact_list = {
     'myself': 'gojo.testing123@gmail.com',
     'guru sai': 'guru.sai.shreesh@gmail.com',
-    'akshara': 'akshara123@gmail.com',
     'blackpink': 'jennie@blackpink.com',
     'lisa': 'lisa@blackpink.com',
+    'akshara': 'akshara123@gmail.com',
 }
 
 def talk(text):
