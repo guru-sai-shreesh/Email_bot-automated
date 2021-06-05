@@ -7,14 +7,15 @@ listener = sr.Recognizer()
 
 engine = pyttsx3.init()
 engine.setProperty('rate', 180)
-engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha.premium')
+#engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha.premium')
+#mac users can remove above commment for better experience
 
 contact_list = {
     'myself': 'gojo.testing123@gmail.com',
     'guru sai': 'guru.sai.shreesh@gmail.com',
-    'blackpink': 'jennie@blackpink.com',
+    'jennie': 'jennie@blackpink.com',
     'lisa': 'lisa@blackpink.com',
-    'akshara': 'akshara123@gmail.com',
+    'charan': 'charan123@gmail.com'
 }
 
 def talk(text):
@@ -48,7 +49,7 @@ def send_email(receiver, subject, message):
 def create_email():
     print("Receiver's names(you can say 'All' for all your contacts): ", end=' ')
     talk('To Whom you want to send this Email.')
-    talk('you can send this to multiple people by connecting with and!')
+    talk('you can send this to multiple people by connecting them with and!')
     l_names = mike_out()
     if l_names == 'quit':
         exit()
