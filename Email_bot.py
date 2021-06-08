@@ -11,8 +11,9 @@ engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha.premium')
 
 contact_list = {
     'myself': 'gojo.testing123@gmail.com',
+    'komal mam': 'komalkaur13@gmail.com',
     'guru sai': 'guru.sai.shreesh@gmail.com',
-    'blackpink': 'jennie@blackpink.com',
+    'jennie': 'jennie@blackpink.com',
     'lisa': 'lisa@blackpink.com',
     'akshara': 'akshara123@gmail.com',
 }
@@ -36,8 +37,8 @@ def mike_out():
 
 
 def send_email(receiver, subject, message):
-    server = smtplib.SMTP('smtp.gmail.com', 587)#to connect to server
-    server.starttls()#tells that it is an secure connection
+    server = smtplib.SMTP('smtp.gmail.com', 587) #to connect to server
+    server.starttls() #tells that it is an secure connection
     # Make sure to give app access in your Google account
     server.login('gojo.testing123@gmail.com', 'hellogojo')
     email = EmailMessage()
