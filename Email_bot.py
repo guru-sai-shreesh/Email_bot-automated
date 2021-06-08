@@ -2,6 +2,16 @@ import smtplib
 import speech_recognition as sr
 import pyttsx3
 from email.message import EmailMessage
+import openpyxl as xl
+
+wb=xl.load_workbook('contacts.xlsx')
+sheet = wb['Sheet1']
+contact_list = {}
+x = 2
+for x in range(2, sheet.max_row+1):
+    cell1 = sheet.cell(x, 2)
+    cell2 = sheet.cell(x, 3)
+    contact_list[cell1.value] = cell2.value
 
 listener = sr.Recognizer()
 
@@ -9,14 +19,7 @@ engine = pyttsx3.init()
 engine.setProperty('rate', 180) #reduces WPM to 180
 engine.setProperty('voice', 'com.apple.speech.synthesis.voice.samantha.premium') #This voice is best suited in macos
 
-contact_list = {
-    'myself': 'gojo.testing123@gmail.com',
-    'komal mam': 'komalkaur13@gmail.com',
-    'guru sai': 'guru.sai.shreesh@gmail.com',
-    'jennie': 'jennie@blackpink.com',
-    'lisa': 'lisa@blackpink.com',
-    'akshara': 'akshara123@gmail.com',
-}
+
 
 
 def talk(text):
@@ -67,7 +70,7 @@ def create_email():
         exit()
     for name in names:
         receivers.append(contact_list[name])
-    print("Receiver's Email adresses: \n", *receivers)
+    print("Receiver's Email adresses: ", *receivers)
     print('Subject of this Email: ', end=' ')
     talk('What is the subject of this Email?')
     subject = mike_out()
@@ -100,10 +103,17 @@ def isnew_ornot():
         name = input("Type name of new contact to add: ")
         email = input("Type Email address of new contact to add: ")
         contact_list[name] = email
+        new_cell0 = sheet.cell(x+1, 1)
+        new_cell1 = sheet.cell(x+1, 2)
+        new_cell2 = sheet.cell(x+1, 3)
+        new_cell0.value = x-1
+        new_cell1.value = name
+        new_cell2.value = email
+        wb.save('contacts.xlsx')
         create_email()
 
 
 talk('hello! I am samantha your email bot')
 talk("you can exit at any point by saying 'quit'")
 isnew_ornot()
-
+wb.close()
